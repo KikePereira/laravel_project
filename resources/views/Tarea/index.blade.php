@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
     
         <div class="col-lg-10">
-        <a href="" class="btn btn-warning">Tareas Pendientes</a>
+        <a href="/pendiente" class="btn btn-warning">Tareas Pendientes</a>
         <a href="/eliminada" class="btn btn-danger">Tareas Eliminadas</a>
         <a href="/tarea/create" class="btn btn-success">Nueva Tarea</a>
         </div>

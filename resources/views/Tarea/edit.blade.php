@@ -103,10 +103,10 @@
             <div class="col-12 col-lg-4">
                 <label for="" class="form-label">Estado:</label> @error('estado')<span class="text-danger">{{$message}}</span>@enderror
                 <select name="estado" id="" class="form-select">
-                    <option value="{{ $tarea->estado }}" selected disabled>{{ $tarea->estado }}</option>
-                    <option value="Pendiente" selected>Pendiente</option>
-                    <option value="Cancelada" selected>Cancelada</option>
-                    <option value="Realizada" selected>Realizada</option>
+                    <option value="{{ $tarea->estado }}" selected readonly>{{ $tarea->estado }}</option>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Cancelada">Cancelada</option>
+                    <option value="Realizada">Realizada</option>
                 </select>
             </div>
 

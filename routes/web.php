@@ -36,3 +36,5 @@ Route::resources([
 
 Route::get('/eliminada', [TareaController::class, 'eliminadas'])->name('tarea.eliminada');
 Route::post('/eliminada/{id}',[TareaController::class, 'restore'])->name('tarea.restore');
+Route::get('/pendiente',[TareaController::class, 'pendiente'])->name('tarea.pendiente');
+

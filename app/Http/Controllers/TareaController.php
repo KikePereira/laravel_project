@@ -162,4 +162,12 @@ class TareaController extends Controller
       Tarea::withTrashed()->find($id)->restore();
       return redirect()->route('tarea.eliminada');
     }
+
+    public function pendiente()
+    {
+        $tareas = Tarea::where('estado', 'Pendiente')->paginate(10);
+        return view('Tarea/index',['tareas'=>$tareas]);
+
+    }
+
 }
