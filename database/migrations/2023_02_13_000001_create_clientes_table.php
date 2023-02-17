@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('pais');
             $table->string('moneda');
             $table->string('importe_mensual');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

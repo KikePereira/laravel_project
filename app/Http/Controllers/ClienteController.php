@@ -71,8 +71,8 @@ class ClienteController extends Controller
     public function show($id)
     {
         $tareas_cliente=Tarea::where('empleado_id',$id)->paginate(5);
-        $clientes=Cliente::where('id',$id)->get();
-        return view('Cliente/show',['clientes'=>$clientes, 'tareas_cliente'=>$tareas_cliente]);
+        $cliente=Cliente::find($id);
+        return view('Cliente/show',['cliente'=>$cliente, 'tareas_cliente'=>$tareas_cliente]);
     }
 
     /**

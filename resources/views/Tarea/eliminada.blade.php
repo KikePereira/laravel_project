@@ -7,7 +7,7 @@
     
         <div class="col-lg-10">
         <a href="" class="btn btn-warning">Tareas Pendientes</a>
-        <a href="/eliminada" class="btn btn-danger">Tareas Eliminadas</a>
+        <a href="/tareas/eliminadas" class="btn btn-danger">Tareas Eliminadas</a>
         <a href="/tarea/create" class="btn btn-success">Nueva Tarea</a>
         </div>
 
@@ -56,12 +56,8 @@
                                     <td class="text-center text-nowrap">{{ $tarea->poblacion }}</td>
                                     <td class="text-center">{{ $tarea->anotacion_inicio }}</td>
                                     <td class="text-center text-nowrap">
-                                        <a href="/tarea/{{ $tarea->id }}"><button
-                                                class="btn btn-primary">Ver</button></a>
-                                        <a href="/tarea/{{ $tarea->id }}/edit"><button
-                                                class="btn btn-secondary">Modificar</button></a>
-                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$tarea->id}}">
-                                                    Eliminar
+                                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal{{$tarea->id}}">
+                                                    Restaurar
                                         </button>
                                     </td>
                                 </tr>
@@ -80,11 +76,8 @@
                                                 <span class="fw-bold">Fecha Realizacion:</span>{{$tarea->fecha_realizacion}}
                                             </div>
                                             <div class="modal-footer">
-                                            <a href="/tarea/{{ $tarea->id }}"><button
-                                                    class="btn btn-primary">Ver</button></a>
-                                            <form action=" {{ route('tarea.destroy', $tarea) }} " method="post">
-                                                @method('delete')
-                                                <input type="submit" value="Eliminar" class="btn btn-danger">
+                                            <form action=" {{ route('tarea.restore', $tarea) }} " method="post">
+                                                <input type="submit" value="Restaurar" class="btn btn-success">
                                             </form>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 

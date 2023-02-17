@@ -33,3 +33,6 @@ Route::resources([
     'empleado' => EmpleadoController::class,
     'cliente' => ClienteController::class,
 ]);
+
+Route::get('/eliminada', [TareaController::class, 'eliminadas'])->name('tarea.eliminada');
+Route::post('/eliminada/{id}',[TareaController::class, 'restore'])->name('tarea.restore');

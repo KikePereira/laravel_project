@@ -144,8 +144,22 @@ class TareaController extends Controller
      * @param  \App\Models\Tarea  $tarea
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tarea $tarea)
+    public function destroy($id)
     {
-        //
+        Tarea::destroy($id);
+        return redirect()->route('tarea.index');
+    }
+
+    public function eliminadas()
+    {
+        $tareas = Tarea::onlyTrashed()->paginate(10);
+        return view('Tarea/eliminada',['tareas'=>$tareas]);
+
+    }
+
+    public function restore($id)
+    {
+      Tarea::withTrashed()->find($id)->restore();
+      return redirect()->route('tarea.eliminada');
     }
 }

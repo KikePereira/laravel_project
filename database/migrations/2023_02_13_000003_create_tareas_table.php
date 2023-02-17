@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
-{
+{    
     /**
      * Run the migrations.
      *
@@ -27,11 +27,12 @@ return new class extends Migration
             $table->string('estado');
             $table->string('fecha_realizacion');
             $table->string('fecha_finalizacion');
-            $table->string('anotacion_inicio');
-            $table->string('anotacion_final');
+            $table->longtext('anotacion_inicio');
+            $table->longtext('anotacion_final');
             $table->foreignId('empleado_id')->constrained();
             $table->foreignId('cliente_id')->constrained(); 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

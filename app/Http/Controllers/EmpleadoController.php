@@ -70,8 +70,8 @@ class EmpleadoController extends Controller
     public function show($id)
     {
         $tareas_empleado=tarea::where('empleado_id',$id)->paginate(5);
-        $empleados=empleado::where('id',$id)->get();
-        return view('Empleado/show',['empleados'=>$empleados, 'tareas_empleado'=>$tareas_empleado]);
+        $empleado=Empleado::find($id);
+        return view('Empleado/show',['empleado'=>$empleado, 'tareas_empleado'=>$tareas_empleado]);
     }
 
     /**

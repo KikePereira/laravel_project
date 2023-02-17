@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @foreach ($empleados as $empleado)
         <div class="container-fluid">
             <div class="container">
             <div class="row">
@@ -116,10 +115,8 @@
                 </div>
         </div>
         <br>
-    @endforeach
     <div class="container">
         <a href="javascript:history.back()" class="btn btn-primary form-control">Volver</a>
     </div>
     <br>
-
 @endsection

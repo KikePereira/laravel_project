@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('direccion');
             $table->string('fecha_alta');
             $table->string('tipo');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
