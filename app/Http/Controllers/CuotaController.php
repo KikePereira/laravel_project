@@ -118,8 +118,22 @@ class CuotaController extends Controller
      * @param  \App\Models\Cuota  $cuota
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cuota $cuota)
+    public function destroy($id)
     {
-        //
+        Cuota::destroy($id);
+        return redirect()->route('cuota.index');
+    }
+
+    public function eliminado()
+    {
+        $cuotas = Cuota::onlyTrashed()->paginate(10);
+        return view('Cuota/eliminada',['cuotas'=>$cuotas]);
+
+    }
+
+    public function restore($id)
+    {
+        Cuota::withTrashed()->find($id)->restore();
+      return redirect()->route('cuota.eliminado');
     }
 }

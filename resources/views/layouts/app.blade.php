@@ -46,6 +46,8 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ url('/tarea') }}">Lista Tareas</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/pendiente') }}">Tareas Pendientes</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/eliminada') }}">Tareas Eliminadas</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ url('/tarea/create') }}">Crear nueva tarea</a></li>
                         </ul>
@@ -59,6 +61,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ url('/empleado') }}">Lista Empleados</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/empleados/eliminado') }}">Empleados eliminados</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ url('/empleado/create') }}">Registrar Empleado</a></li>
                         </ul>
@@ -72,6 +75,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ url('/cliente') }}">Lista Clientes</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/clientes/eliminado') }}">Clientes eliminados</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ url('/cliente/create') }}">Registrar Clientes</a></li>
                         </ul>
@@ -84,6 +88,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ url('/cuota') }}">Lista Cuotas</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/cuotas/eliminado') }}">Cuotas eliminados</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ url('/cuota/create') }}">Registrar Cuota</a></li>
                         </ul>

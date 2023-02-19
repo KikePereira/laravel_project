@@ -49,9 +49,9 @@
                          @endif
                         <td class="text-center">{{ $cuota->cliente->nombre }}</td>
                         <td class="text-center">
-                            <a href="/cuota/{{ $cuota->id }}"><button class="btn btn-primary">Ver</button></a>
-                            <a href="/cuota/{{ $cuota->id }}/edit"><button class="btn btn-secondary">Modificar</button></a>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$cuota->id}}">Eliminar</button>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal{{$cuota->id}}">
+                                Restaurar
+                    </button>
                         </td>
                     </tr>
                     <!-- Modal -->
@@ -70,11 +70,8 @@
                                     <span class="fw-bold">Cliente:</span> {{$cuota->cliente->nombre}} {{$cuota->cliente->apellidos}}
                                 </div>
                                 <div class="modal-footer">
-                                <a href="/cuota/{{ $cuota->id }}"><button
-                                        class="btn btn-primary">Ver</button></a>
-                                <form action=" {{ route('cuota.destroy', $cuota) }} " method="post">
-                                    @method('delete')
-                                    <input type="submit" value="Eliminar" class="btn btn-danger">
+                                    <form action=" {{ route('cuota.restore', $cuota) }} " method="post">
+                                    <input type="submit" value="Restaurar" class="btn btn-success">
                                 </form>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                 </div>

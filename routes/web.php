@@ -45,3 +45,6 @@ Route::post('empleados/eliminado/{id}',[EmpleadoController::class, 'restore'])->
 
 Route::get('clientes/eliminado', [ClienteController::class, 'eliminado'])->name('cliente.eliminado');
 Route::post('clientes/eliminado/{id}',[ClienteController::class, 'restore'])->name('cliente.restore');
+
+Route::get('cuotas/eliminado', [CuotaController::class, 'eliminado'])->name('cuota.eliminado');
+Route::post('cuotas/eliminado/{id}',[CuotaController::class, 'restore'])->name('cuota.restore');
