@@ -6,6 +6,8 @@
     <div class="row justify-content-center">
     
         <div class="col-lg-10">
+        
+        <a href="/tarea" class="btn btn-primary">Listas Tareas</a>
         <a href="/pendiente" class="btn btn-warning">Tareas Pendientes</a>
         <a href="/eliminada" class="btn btn-danger">Tareas Eliminadas</a>
         <a href="/tarea/create" class="btn btn-success">Nueva Tarea</a>
@@ -90,8 +92,8 @@
 
                                             </div>
                                         </div>
-                                        </div>
                                     </div>
+                                </div>
                             @endforeach
                         </tbody>
                     </table>
