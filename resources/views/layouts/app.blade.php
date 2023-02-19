@@ -105,6 +105,7 @@
                             <li><a class="dropdown-item" href="{{ url('/cuota') }}">Lista Cuotas</a></li>
                             <li><a class="dropdown-item" href="{{ url('/cuotas/eliminado') }}">Cuotas eliminados</a></li>
                             <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url('/cuotas/monthly_create') }}">Remesa Mensual</a></li>
                             <li><a class="dropdown-item" href="{{ url('/cuota/create') }}">Registrar Cuota</a></li>
                         </ul>
                     </li>
