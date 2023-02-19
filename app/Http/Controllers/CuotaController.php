@@ -78,9 +78,11 @@ class CuotaController extends Controller
      * @param  \App\Models\Cuota  $cuota
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cuota $cuota)
+    public function edit($id)
     {
-        //
+        $cuota=Cuota::find($id);
+        $clientes = Cliente::all();
+        return view('Cuota/edit',['cuota'=>$cuota, 'clientes' => $clientes]);
     }
 
     /**
@@ -90,9 +92,24 @@ class CuotaController extends Controller
      * @param  \App\Models\Cuota  $cuota
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCuotaRequest $request, Cuota $cuota)
+    public function update($id)
     {
-        //
+        $cuota_update=Cuota::find($id);
+
+        $cuota = request()->validate([
+
+            'concepto' => ['required'],
+            'fecha_emision' => ['required'],
+            'importe' => ['required', 'numeric'],
+            'estado' => ['required'],
+            'fecha_pago' => ['required'],
+            'cliente_id' => ['required'],
+            'direccion' => ['required'],
+        ]);
+
+        $cuota['notas'] = request('notas');
+        $cuota_update->update($cuota);
+        return redirect()->route('cuota.index');
     }
 
     /**
