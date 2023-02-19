@@ -6,6 +6,7 @@ use App\Http\Controllers\TareaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\CuotaController;
+use App\Http\Controllers\OperarioController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -34,6 +35,7 @@ Route::resources([
     'empleado' => EmpleadoController::class,
     'cliente' => ClienteController::class,
     'cuota' => CuotaController::class,
+    'operario' => OperarioController::class,
 ]);
 
 Route::get('/eliminada', [TareaController::class, 'eliminadas'])->name('tarea.eliminada');
@@ -50,5 +52,8 @@ Route::get('cuotas/eliminado', [CuotaController::class, 'eliminado'])->name('cuo
 Route::post('cuotas/eliminado/{id}',[CuotaController::class, 'restore'])->name('cuota.restore');
 Route::get('cuotas/monthly_create', [CuotaController::class, 'monthly_create'])->name('cuota.monthly_create');
 Route::post('cuotas/monthly_store', [CuotaController::class, 'monthly_store'])->name('cuota.monthly_store');
+
+Route::get('operarios/pendiente',[OperarioController::class, 'pendiente'])->name('operario.pendiente');
+
 
 

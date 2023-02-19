@@ -6,6 +6,8 @@ use App\Models\Cuota;
 use App\Models\Cliente;
 use App\Http\Requests\StoreCuotaRequest;
 use App\Http\Requests\UpdateCuotaRequest;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\correo;
 
 class CuotaController extends Controller
 {
@@ -139,7 +141,6 @@ class CuotaController extends Controller
 
     public function monthly_create()
     {
-        $clientes = Cliente::all();
         return view('Cuota/monthly_create',[]);
     }
 
@@ -157,10 +158,14 @@ class CuotaController extends Controller
         $cuota['notas'] = request('notas');
 
         foreach($clientes as $cliente){
+            $correo = new Correo($cliente->nombre);
             $cuota['cliente_id'] = $cliente->id;
             $cuota['direccion'] = $cliente->direccion;
             Cuota::insert($cuota);
+            $destinatario = $cliente->correo;
+            Mail::to($destinatario)->send($correo);
         }
+
         return redirect()->route('cuota.index');
     }
 

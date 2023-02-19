@@ -73,7 +73,7 @@
             <div class="col-12 col-lg-6">
                 <label for="" class="form-label">Tipo de empleado:</label> @error('tipo')<span class="text-danger">{{$message}}</span>@enderror
                 <select name="tipo" id="tipo" class="form-select">
-                    <option value="{{$empleado->tipo}}" disabled selected>{{$empleado->tipo}}</option>
+                    <option value="{{$empleado->tipo}}" hidden selected>{{$empleado->tipo}}</option>
                     <option value="Operario">Operario</option>
                     <option value="Administrador">Administrador</option>
                 </select>

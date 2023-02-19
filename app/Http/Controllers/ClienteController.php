@@ -56,7 +56,7 @@ class ClienteController extends Controller
             'pais' => 'required',
             'moneda' => ['required','regex:/^[a-z]+$/i'],
             'cuenta_corriente' => ['required'],
-            'importe_mensual' => ['required','regex:/^[0-9]$/'],
+            'importe_mensual' => ['required','numeric'],
         ]);
 
         Cliente::insert($cliente);

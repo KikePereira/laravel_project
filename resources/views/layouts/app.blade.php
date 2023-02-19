@@ -32,7 +32,22 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+                    <!-- BARRA NAVEGACION OPERARIO -->
+                    @if( Auth::user()->tipo == 'Operario')
+                    <ul class="navbar-nav me-auto">
+                        <!-- Tareas -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tareas
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ url('/operario') }}">Lista Tareas</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/operarios/pendiente') }}">Tareas Pendientes</a></li>
+                        </ul>
+                    </li>
+                    </ul>
+                    @endif
+                    <!-- BARRA NAVEGACION ADMIN -->
                 @if( Auth::user()->tipo == 'Administrador')
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
