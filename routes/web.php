@@ -48,3 +48,7 @@ Route::post('clientes/eliminado/{id}',[ClienteController::class, 'restore'])->na
 
 Route::get('cuotas/eliminado', [CuotaController::class, 'eliminado'])->name('cuota.eliminado');
 Route::post('cuotas/eliminado/{id}',[CuotaController::class, 'restore'])->name('cuota.restore');
+Route::get('cuotas/monthly_create', [CuotaController::class, 'monthly_create'])->name('cuota.monthly_create');
+Route::post('cuotas/monthly_store', [CuotaController::class, 'monthly_store'])->name('cuota.monthly_store');
+
+

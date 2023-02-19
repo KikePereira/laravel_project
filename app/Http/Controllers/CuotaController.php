@@ -136,4 +136,32 @@ class CuotaController extends Controller
         Cuota::withTrashed()->find($id)->restore();
       return redirect()->route('cuota.eliminado');
     }
+
+    public function monthly_create()
+    {
+        $clientes = Cliente::all();
+        return view('Cuota/monthly_create',[]);
+    }
+
+    public function monthly_store()
+    {
+        $clientes=Cliente::all();
+        $cuota = request()->validate([
+
+            'concepto' => ['required'],
+            'fecha_emision' => ['required'],
+            'importe' => ['required', 'numeric'],
+            'estado' => ['required'],
+            'fecha_pago' => ['required'],
+        ]);
+        $cuota['notas'] = request('notas');
+
+        foreach($clientes as $cliente){
+            $cuota['cliente_id'] = $cliente->id;
+            $cuota['direccion'] = $cliente->direccion;
+            Cuota::insert($cuota);
+        }
+        return redirect()->route('cuota.index');
+    }
+
 }

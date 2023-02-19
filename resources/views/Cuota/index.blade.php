@@ -10,6 +10,7 @@
         <a href="/cuota" class="btn btn-primary">Listas Cuotas</a>
         <a href="/cuotas/eliminado" class="btn btn-danger">Cuotas Eliminados</a>
         <a href="/cuota/create" class="btn btn-success">Nueva Cuota</a>
+        <a href="/cuotas/monthly_create" class="btn btn-warning">Remesa Mensual</a>
         </div>
 
         <div class="col-lg-1">
