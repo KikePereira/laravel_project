@@ -9,7 +9,7 @@
             
             <a href="/empleado" class="btn btn-primary">Listas Empleados</a>
             <a href="/empleados/eliminado" class="btn btn-danger">Empleados Eliminados</a>
-            <a href="/empleado/create" class="btn btn-success">Nuevo Empleado</a>
+            <a href="/empleado/create" class="btn btn-success">Nueva Tarea</a>
             </div>
     
             <div class="col-lg-1">
@@ -56,42 +56,34 @@
                                     <td class="text-center text-white bg-primary">{{ $empleado->tipo }}</td>
                                 @endif
                                 <td class="text-center">
-                                    <a href="/empleado/{{ $empleado->id }}"><button
-                                            class="btn btn-primary">Ver</button></a>
-                                    <a href="/empleado/{{ $empleado->id }}/edit"><button
-                                            class="btn btn-secondary">Modificar</button></a>
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$empleado->id}}">
-                                                Eliminar
-                                    </button>
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal{{$empleado->id}}">
+                                        Restaurar
+                            </button>
                                 </td>
                             </tr>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="modal{{$empleado->id}}" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">¿Seguro que quiere eliminar esta tarea?</h1>
-                                        </div>
-                                        <div class="modal-body">
-                                            <span class="fw-bold">ID:</span> {{$empleado->id}} <br>
-                                            <span class="fw-bold">Empleado:</span> {{$empleado->nombre}} {{$empleado->apellidos}} <br>
-                                            <span class="fw-bold">DNI:</span> {{$empleado->dni}} <br>
-                                            <span class="fw-bold">Tipo:</span> {{$empleado->tipo}} <br>
-                                            <span class="fw-bold">Fecha Alta:</span> {{$empleado->fecha_alta}}
-                                        </div>
-                                        <div class="modal-footer">
-                                        <a href="/empleado/{{ $empleado->id }}"><button
-                                                class="btn btn-primary">Ver</button></a>
-                                        <form action=" {{ route('empleado.destroy', $empleado) }} " method="post">
-                                            @method('delete')
-                                            <input type="submit" value="Eliminar" class="btn btn-danger">
-                                        </form>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal{{$empleado->id}}" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">¿Seguro que quiere eliminar esta tarea?</h1>
+                                            </div>
+                                            <div class="modal-body">
+                                                <span class="fw-bold">ID:</span> {{$empleado->id}} <br>
+                                                <span class="fw-bold">Empleado:</span> {{$empleado->nombre}} {{$empleado->apellidos}} <br>
+                                                <span class="fw-bold">DNI:</span> {{$empleado->dni}} <br>
+                                                <span class="fw-bold">Tipo:</span> {{$empleado->tipo}} <br>
+                                                <span class="fw-bold">Fecha Alta:</span> {{$empleado->fecha_alta}}
+                                            </div>
+                                            <div class="modal-footer">
+                                            <form action=" {{ route('empleado.restore', $empleado) }} " method="post">
+                                                <input type="submit" value="Restaurar" class="btn btn-success">
+                                            </form>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         @endforeach
                     </table>
 

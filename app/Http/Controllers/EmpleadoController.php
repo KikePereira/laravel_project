@@ -117,8 +117,22 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empleado $empleado)
+    public function destroy($id)
     {
-        //
+        Empleado::destroy($id);
+        return redirect()->route('empleado.index');
+    }
+
+    public function eliminado()
+    {
+        $empleados = Empleado::onlyTrashed()->paginate(10);
+        return view('Empleado/eliminada',['empleados'=>$empleados]);
+
+    }
+
+    public function restore($id)
+    {
+      Empleado::withTrashed()->find($id)->restore();
+      return redirect()->route('empleado.eliminado');
     }
 }

@@ -7,8 +7,7 @@
         
             <div class="col-lg-10">
             
-            <a href="/empleado" class="btn btn-primary">Listas Clientes</a>
-            <a href="/clientes/eliminado" class="btn btn-danger">Clientes Eliminados</a>
+            <a href="/cliente" class="btn btn-primary">Listas Clientes</a>
             <a href="/cliente/create" class="btn btn-success">Nuevo Cliente</a>
             </div>
     
@@ -54,11 +53,8 @@
                             <td class="text-center">{{ $cliente->moneda }}</td>
                             <td class="text-center">{{ $cliente->importe_mensual }}</td>
                             <td>
-                                <a href="/cliente/{{ $cliente->id }}"><button class="btn btn-primary">Ver</button></a>
-                                <a href="/cliente/{{ $cliente->id }}/edit"><button
-                                        class="btn btn-secondary">Modificar</button></a>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$cliente->id}}">
-                                            Eliminar
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal{{$cliente->id}}">
+                                            Restaurar
                                 </button>
                             </td>
                         </tr>
@@ -77,13 +73,10 @@
                                         <span class="fw-bold">Importe Mensual:</span> {{$cliente->importe_mensual}}
                                     </div>
                                     <div class="modal-footer">
-                                    <a href="/cliente/{{ $cliente->id }}"><button
-                                            class="btn btn-primary">Ver</button></a>
-                                    <form action=" {{ route('cliente.destroy', $cliente) }} " method="post">
-                                        @method('delete')
-                                        <input type="submit" value="Eliminar" class="btn btn-danger">
-                                    </form>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <form action=" {{ route('cliente.restore', $cliente) }} " method="post">
+                                            <input type="submit" value="Restaurar" class="btn btn-success">
+                                        </form>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                     </div>
                                 </div>
                             </div>

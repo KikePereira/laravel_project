@@ -122,8 +122,22 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cliente $cliente)
+    public function destroy($id)
     {
-        //
+        Cliente::destroy($id);
+        return redirect()->route('cliente.index');
+    }
+
+    public function eliminado()
+    {
+        $clientes = Cliente::onlyTrashed()->paginate(10);
+        return view('Cliente/eliminada',['clientes'=>$clientes]);
+
+    }
+
+    public function restore($id)
+    {
+        Cliente::withTrashed()->find($id)->restore();
+      return redirect()->route('cliente.eliminado');
     }
 }

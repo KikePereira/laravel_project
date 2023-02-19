@@ -38,3 +38,8 @@ Route::get('/eliminada', [TareaController::class, 'eliminadas'])->name('tarea.el
 Route::post('/eliminada/{id}',[TareaController::class, 'restore'])->name('tarea.restore');
 Route::get('/pendiente',[TareaController::class, 'pendiente'])->name('tarea.pendiente');
 
+Route::get('empleados/eliminado', [EmpleadoController::class, 'eliminado'])->name('empleado.eliminado');
+Route::post('empleados/eliminado/{id}',[EmpleadoController::class, 'restore'])->name('empleado.restore');
+
+Route::get('clientes/eliminado', [ClienteController::class, 'eliminado'])->name('cliente.eliminado');
+Route::post('clientes/eliminado/{id}',[ClienteController::class, 'restore'])->name('cliente.restore');
