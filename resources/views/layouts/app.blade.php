@@ -76,6 +76,18 @@
                             <li><a class="dropdown-item" href="{{ url('/cliente/create') }}">Registrar Clientes</a></li>
                         </ul>
                     </li>
+
+                    <!-- Cuotas -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Cuotas
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ url('/cuota') }}">Lista Cuotas</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url('/cuota/create') }}">Registrar Cuota</a></li>
+                        </ul>
+                    </li>
                     </ul>
                     @endif
 

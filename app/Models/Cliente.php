@@ -28,4 +28,8 @@ class Cliente extends Model
     public function tarea(){
         return $this->hasMany(Tarea::class);
     }
+
+    public function cuota(){
+        return $this->hasMany(Cuota::class);
+    }
 }

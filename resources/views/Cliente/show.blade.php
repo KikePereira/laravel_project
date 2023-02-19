@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-        <div class="container-fluid">
-            <div class="container">
+    <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <form action="" method="post" class="">
                     <div class="row">
@@ -83,9 +83,10 @@
                 </form>
             </div>
         </div>
-            <table class="table table-hover border bg-white caption-top"  cellspacing="0" >
-                <caption>Tareas del cliente</caption>
-                <thead class="table-dark">
+        <!-- TABLA DE TAREAS DEL CLIENTE -->
+        <table class="table table-hover border bg-white caption-top" cellspacing="0">
+            <caption>Tareas del cliente</caption>
+            <thead class="table-dark">
                 <tr class="">
                     <th class="text-center fw-bold">ID</th>
                     <th class="text-center fw-bold">Estado</th>
@@ -97,38 +98,76 @@
                     <th class="text-center fw-bold"></th>
                 </tr>
             </thead>
-                <tbody class="">
-                    @foreach($tareas_cliente as $tarea)
+            <tbody class="">
+                @foreach ($tareas_cliente as $tarea)
                     <tr>
-                        <td class="text-center fw-bold">{{$tarea->id}}</td>
+                        <td class="text-center fw-bold">{{ $tarea->id }}</td>
                         <!-- VARIACIONES ESTADO -->
-                        @if($tarea->estado == 'Pendiente')
-                        <td class="bg-warning">{{$tarea->estado}}</td>
+                        @if ($tarea->estado == 'Pendiente')
+                            <td class="bg-warning">{{ $tarea->estado }}</td>
                         @elseif($tarea->estado == 'Cancelada')
-                        <td class="bg-danger">{{$tarea->estado}}</td>
+                            <td class="bg-danger">{{ $tarea->estado }}</td>
                         @else
-                        <td class="bg-success">{{$tarea->estado}}</td>
+                            <td class="bg-success">{{ $tarea->estado }}</td>
                         @endif
                         <!--  -->
-                        <td class="text-center text-nowrap">{{$tarea->fecha_realizacion}}</td>
-                        <td class="text-center text-nowrap">{{$tarea->empleado->nombre}}</td>
-                        <td class="text-center text-nowrap">{{$tarea->cliente->nombre}}</td>
-                        <td class="text-center text-nowrap">{{$tarea->poblacion}}</td>
-                        <td class="text-center">{{$tarea->anotacion_inicio}}</td>
+                        <td class="text-center text-nowrap">{{ $tarea->fecha_realizacion }}</td>
+                        <td class="text-center text-nowrap">{{ $tarea->empleado->nombre }}</td>
+                        <td class="text-center text-nowrap">{{ $tarea->cliente->nombre }}</td>
+                        <td class="text-center text-nowrap">{{ $tarea->poblacion }}</td>
+                        <td class="text-center">{{ $tarea->anotacion_inicio }}</td>
                         <td class="text-center text-nowrap">
-                            <a href="/tarea/{{$tarea->id}}"><button class="btn btn-primary">Ver</button></a>
-                            <a href="/tarea/{{$tarea->id}}"><button class="btn btn-secondary">Modificar</button></a>
-                            <a href="/tarea/{{$tarea->id}}"><button class="btn btn-danger">Eliminar</button></a>
+                            <a href="/tarea/{{ $tarea->id }}"><button class="btn btn-primary text-center">Ver</button></a>
                         </td>
                     </tr>
-                    @endforeach
-                </tbody>
-                </table>
-                <div class="pagination">        
-                    {{$tareas_cliente->links()}}
-                </div>
+                @endforeach
+            </tbody>
+        </table>
+        <div class="pagination">
+            {{ $tareas_cliente->links() }}
         </div>
         <br>
+        <!-- TABLA DE CUOTAS DEL CLIENTE -->
+        <table class="table table-hover border bg-white caption-top" cellspacing="0">
+            <caption>Cuotas del cliente</caption>
+            <thead class="table-dark">
+                <tr class="">
+                    <th class="text-center fw-bold">ID</th>
+                    <th class="text-center fw-bold">Concepto</th>
+                    <th class="text-center fw-bold">Fecha Emision</th>
+                    <th class="text-center fw-bold">Importe</th>
+                    <th class="text-center fw-bold">Estado</th>
+                    <th class="text-center fw-bold">Cliente</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="">
+                @foreach ($cuotas_cliente as $cuota)
+                    <tr>
+                        <td class="text-center fw-bold">{{ $cuota->id }}</td>
+                        <td class="text-center">{{ $cuota->concepto }}</td>
+                        <td class="text-center">{{ $cuota->fecha_emision }}</td>
+                        <td class="text-center">{{ $cuota->importe }}</td>
+                        <!-- Variaciones estado -->
+                        @if ($cuota->estado == 'Pagada')
+                        <td class="text-center bg-success">{{ $cuota->estado }}</td>
+                        @else
+                        <td class="text-center bg-danger">{{ $cuota->estado }}</td>
+                        @endif
+                        <td class="text-center">{{ $cuota->cliente->nombre }} {{ $cuota->cliente->apellidos }}</td>
+                        <!--  -->
+                        <td>
+                            <a href="/cuota/{{$cuota->id}}" class="btn btn-primary text-center">Ver</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <div class="pagination">
+            {{ $cuotas_cliente->links() }}
+        </div>
+    </div>
+
     <div class="container">
         <a href="javascript:history.back()" class="btn btn-primary form-control">Volver</a>
     </div>

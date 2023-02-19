@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TareaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\CuotaController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -32,6 +33,7 @@ Route::resources([
     'tarea' => TareaController::class,
     'empleado' => EmpleadoController::class,
     'cliente' => ClienteController::class,
+    'cuota' => CuotaController::class,
 ]);
 
 Route::get('/eliminada', [TareaController::class, 'eliminadas'])->name('tarea.eliminada');

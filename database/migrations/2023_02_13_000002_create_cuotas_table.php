@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('fecha_pago');
             $table->string('direccion');
             $table->longText('notas');
-            $table->foreignId('cliente_id')->constrained(); 
+            $table->foreignId('cliente_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();         
         });
     }

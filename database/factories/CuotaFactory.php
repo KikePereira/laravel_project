@@ -17,7 +17,13 @@ class CuotaFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'concepto' => $this->faker->word(),
+            'fecha_emision' => $this->faker->date(),
+            'importe' => $this->faker->randomNumber(5, true),
+            'estado' => $this->faker->randomElement(['Pagada','No pagada']),
+            'fecha_pago' => $this->faker->date(),
+            'direccion' => $this->faker->streetAddress(),
+            'notas' => $this->faker->paragraph(),
         ];
     }
 }

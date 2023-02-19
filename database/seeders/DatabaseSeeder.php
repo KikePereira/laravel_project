@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use \App\Models\Cliente;
 use \App\Models\Empleado;
 use \App\Models\Tarea;
+use \App\Models\Cuota;
 
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -26,6 +27,11 @@ class DatabaseSeeder extends Seeder
             ->count(10)
             ->forCliente()
             ->forEmpleado()
+            ->create();
+        
+        Cuota::factory()
+            ->count(10)
+            ->forCliente()
             ->create();
 
         // \App\Models\User::factory()->create([

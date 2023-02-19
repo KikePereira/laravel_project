@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Models\Tarea;
+use App\Models\Cuota;
 use App\Http\Requests\StoreClienteRequest;
 use App\Http\Requests\UpdateClienteRequest;
 
@@ -70,9 +71,10 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        $tareas_cliente=Tarea::where('empleado_id',$id)->paginate(5);
+        $tareas_cliente=Tarea::where('cliente_id',$id)->paginate(5);
+        $cuotas_cliente=Cuota::where('cliente_id', $id)->paginate(5);
         $cliente=Cliente::find($id);
-        return view('Cliente/show',['cliente'=>$cliente, 'tareas_cliente'=>$tareas_cliente]);
+        return view('Cliente/show',['cliente'=>$cliente, 'tareas_cliente'=>$tareas_cliente, 'cuotas_cliente' => $cuotas_cliente]);
     }
 
     /**
