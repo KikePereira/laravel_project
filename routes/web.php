@@ -8,6 +8,9 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\OperarioController;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\Empleado;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -55,5 +58,24 @@ Route::post('cuotas/monthly_store', [CuotaController::class, 'monthly_store'])->
 
 Route::get('operarios/pendiente',[OperarioController::class, 'pendiente'])->name('operario.pendiente');
 
+Route::get('/auth/github/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+
+Route::get('/auth/github/callback', function () {
+    $githubUser = Socialite::driver('github')->user();
+ 
+    $user = Empleado::firstOrCreate([
+        'github_id' => $githubUser->id,
+    ], [
+        'nombre' => $githubUser->name,
+        'email' => $githubUser->email,
+        'tipo' => 'Operario'
+    ]);
+ 
+    Auth::login($user);
+ 
+    return redirect('/');
+});
 
 
