@@ -1,6 +1,12 @@
-@extends('layouts.app')
+<title>{{ config('app.name', 'Laravel') }}</title>
 
-@section('content')
+<!-- Fonts -->
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+
+<!-- Scripts -->
+@vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -44,4 +50,3 @@
         </div>
     </div>
 </div>
-@endsection
