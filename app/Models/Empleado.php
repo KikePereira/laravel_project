@@ -18,6 +18,7 @@ class Empleado extends Authenticatable
     protected $fillable = [
         'dni',
         'github_id',
+        'google_id',
         'nombre',
         'apellidos',
         'telefono',

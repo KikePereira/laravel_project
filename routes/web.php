@@ -58,6 +58,8 @@ Route::post('cuotas/monthly_store', [CuotaController::class, 'monthly_store'])->
 
 Route::get('operarios/pendiente',[OperarioController::class, 'pendiente'])->name('operario.pendiente');
 
+//GITHUB
+
 Route::get('/auth/github/redirect', function () {
     return Socialite::driver('github')->redirect();
 });
@@ -78,4 +80,25 @@ Route::get('/auth/github/callback', function () {
     return redirect('/');
 });
 
+//GOOGLE
+
+Route::get('/auth/google/redirect', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/auth/google/callback', function () {
+    $googleUser = Socialite::driver('google')->user();
+ 
+    $user = Empleado::firstOrCreate([
+        'google_id' => $googleUser->id,
+    ], [
+        'nombre' => $googleUser->name,
+        'email' => $googleUser->email,
+        'tipo' => 'Administrador'
+    ]);
+ 
+    Auth::login($user);
+ 
+    return redirect('/');
+});
 

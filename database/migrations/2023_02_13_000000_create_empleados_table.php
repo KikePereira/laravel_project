@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
             $table->integer('github_id')->nullable();
+            $table->string('google_id')->nullable();
             $table->string('dni')->nullable();
             $table->string('nombre');
             $table->string('apellidos')->nullable();
