@@ -44,7 +44,7 @@
             </div>
             <div class="col-12 col-lg-6">
                 <label for=""  class="form-label">Contraseña:</label> @error('password')<span class="text-danger">{{$message}}</span>@enderror
-                <input type="text" class="form-control" name="password" placeholder="Introduce una contraseña para el empleado" value="{{$empleado->password}})">
+                <input type="password" disabled class="form-control" name="password" placeholder="Introduce una contraseña para el empleado" value="{{$empleado->password}})">
             </div>
         </div>
         </div>

@@ -102,7 +102,6 @@ class EmpleadoController extends Controller
             'apellidos' => ['required','regex:/^[a-z]+$/i'],
             'telefono' => ['required','regex:/(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/    '],
             'email' => ['required','email'],
-            'password' => 'required',
             'direccion' => 'required',
             'fecha_alta' => 'required',
             'tipo' => 'required'
