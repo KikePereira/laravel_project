@@ -59,6 +59,9 @@ class CuotaController extends Controller
 
         $cuota['notas'] = request('notas');
         Cuota::insert($cuota);
+        $correo = new Correo(Cliente::find($cuota['cliente_id'])->nombre);
+        $destinatario = Cliente::find($cuota['cliente_id'])->correo;
+        Mail::to($destinatario)->send($correo);
         return redirect()->route('cuota.index');
     }
 
