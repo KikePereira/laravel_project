@@ -22,7 +22,7 @@ class ClienteFactory extends Factory
             'nombre' => $this->faker->name(),
             'apellidos' => $this->faker->lastname(),
             'telefono' => $this->faker->phoneNumber(),
-            'correo' => $this->faker->email(),
+            'correo' => $this->faker->freeEmail(),
             'direccion' => $this->faker->streetAddress(),
             'cuenta_corriente' => $this->faker->creditCardNumber(),
             'pais' => $this->faker->country(),

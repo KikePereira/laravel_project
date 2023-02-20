@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('estado');
             $table->string('fecha_pago');
             $table->string('direccion');
-            $table->longText('notas');
+            $table->longText('notas')->nullable();
             $table->foreignId('cliente_id')->constrained();
             $table->softDeletes();
             $table->timestamps();         

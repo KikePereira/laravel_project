@@ -8,6 +8,9 @@ use App\Http\Requests\StoreCuotaRequest;
 use App\Http\Requests\UpdateCuotaRequest;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\correo;
+use Illuminate\Support\Facades\App;
+use PDF;
+
 
 class CuotaController extends Controller
 {
@@ -59,9 +62,17 @@ class CuotaController extends Controller
 
         $cuota['notas'] = request('notas');
         Cuota::insert($cuota);
-        $correo = new Correo(Cliente::find($cuota['cliente_id'])->nombre);
         $destinatario = Cliente::find($cuota['cliente_id'])->correo;
-        Mail::to($destinatario)->send($correo);
+        $cuota=Cuota::orderBy('id', 'desc')->first();
+        $pdfContent = $this->generatePDF($cuota);
+        // $correo = new Correo(Cliente::find($cuota['cliente_id'])->nombre);
+        // Mail::to($destinatario)->send($correo);
+        Mail::send([], [], function ($message) use ($pdfContent, $destinatario) {
+            $message->to($destinatario)
+                    ->subject('Cuota')
+                    ->attachData($pdfContent, 'cuota.pdf');
+        });
+    
         return redirect()->route('cuota.index');
     }
 
@@ -150,26 +161,53 @@ class CuotaController extends Controller
     public function monthly_store()
     {
         $clientes=Cliente::all();
-        $cuota = request()->validate([
 
+        $datos = request()->validate([
             'concepto' => ['required'],
             'fecha_emision' => ['required'],
             'importe' => ['required', 'numeric'],
             'estado' => ['required'],
             'fecha_pago' => ['required'],
+            'notas' => ['nullable'],
         ]);
-        $cuota['notas'] = request('notas');
 
         foreach($clientes as $cliente){
-            $correo = new Correo($cliente->nombre);
-            $cuota['cliente_id'] = $cliente->id;
-            $cuota['direccion'] = $cliente->direccion;
-            Cuota::insert($cuota);
-            $destinatario = $cliente->correo;
-            Mail::to($destinatario)->send($correo);
+            $datos['cliente_id'] = $cliente->id;
+            $datos['direccion'] = $cliente->direccion;
+
+            Cuota::insert($datos);
+            
+            $destinatario = Cliente::find($datos['cliente_id'])->correo;
+            $cuota=Cuota::orderBy('id', 'desc')->first();
+            $pdfContent = $this->generatePDF($cuota);
+            Mail::send([], [], function ($message) use ($pdfContent, $destinatario) {
+                $message->to($destinatario)
+                        ->subject('Cuota')
+                        ->attachData($pdfContent, 'cuota.pdf');
+            });
+
         }
 
         return redirect()->route('cuota.index');
     }
+
+    public function pdf($id)
+    {
+    $cuota = Cuota::findOrFail($id);
+
+    $html = view('cuota.pdf', compact('cuota'))->render();
+    $pdf = App::make('dompdf.wrapper');
+    $pdf->loadHTML($html);
+
+    return $pdf->stream();
+    }
+
+    public function generatePDF(Cuota $cuota)
+{
+    $pdf = PDF::loadView('cuota.pdf', compact('cuota'));
+    $pdfContent = $pdf->output();
+
+    return $pdfContent;
+}
 
 }

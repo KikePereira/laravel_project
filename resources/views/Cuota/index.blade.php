@@ -52,6 +52,7 @@
                         <td class="text-center">
                             <a href="/cuota/{{ $cuota->id }}"><button class="btn btn-primary">Ver</button></a>
                             <a href="/cuota/{{ $cuota->id }}/edit"><button class="btn btn-secondary">Modificar</button></a>
+                            <a href="/cuota/{{$cuota->id}}/pdf" class="btn btn-success">PDF</a>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$cuota->id}}">Eliminar</button>
                         </td>
                     </tr>
@@ -63,7 +64,7 @@
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">¿Seguro que quiere eliminar esta tarea?</h1>
                                 </div>
                                 <div class="modal-body">
-                                    <span class="fw-bold">ID:</span> {{$cuota->id}} <br>
+                                    <span class="fw-bold">ID:</span> {{$cuota->id}}<br>
                                     <span class="fw-bold">Conceptp:</span> {{$cuota->concepto}}<br>
                                     <span class="fw-bold">Fecha Emision:</span> {{$cuota->fecha_emision}} <br>
                                     <span class="fw-bold">Importe:</span> {{$cuota->importe}} <br>

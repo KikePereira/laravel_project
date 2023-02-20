@@ -102,3 +102,10 @@ Route::get('/auth/google/callback', function () {
     return redirect('/');
 });
 
+//PDF
+
+Route::get('cuota/{id}/pdf', [CuotaController::class, 'pdf'])->name('cuota.pdf');
+
+
+
+

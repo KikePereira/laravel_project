@@ -22,7 +22,7 @@ class EmpleadoFactory extends Factory
             'nombre' => $this->faker->name(),
             'apellidos' => $this->faker->lastname(),
             'telefono' => $this->faker->phoneNumber(),
-            'email' => fake()->unique()->safeEmail(),
+            'email' => fake()->unique()->safeEmail('gmail.com'),
             'email_verified_at' => now(),
             'password' => bcrypt('123123123'),
             'remember_token' => Str::random(10),
