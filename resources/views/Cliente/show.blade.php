@@ -81,6 +81,14 @@
                         </div>
                     </div>
                 </form>
+                <div class="mt-3 text-end">
+                    <a href="/cliente/{{ $cliente->id }}/edit"><button
+                        class="btn btn-secondary">Modificar</button></a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$cliente->id}}">
+                            Eliminar
+                        </button>
+                    <a href="javascript:history.back()" class="btn btn-primary">Volver</a>
+                </div>
             </div>
         </div>
         <!-- TABLA DE TAREAS DEL CLIENTE -->
@@ -172,4 +180,31 @@
         <a href="javascript:history.back()" class="btn btn-primary form-control">Volver</a>
     </div>
     <br>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="modal{{$cliente->id}}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">¿Seguro que quiere eliminar esta tarea?</h1>
+                                        </div>
+                                        <div class="modal-body">
+                                            <span class="fw-bold">ID:</span> {{$cliente->id}} <br>
+                                            <span class="fw-bold">Cliente:</span> {{$cliente->nombre}} {{$cliente->apellidos}} <br>
+                                            <span class="fw-bold">DNI:</span> {{$cliente->dni}} <br>
+                                            <span class="fw-bold">Cuenta Corriente:</span> {{$cliente->cuenta_corriente}} <br>
+                                            <span class="fw-bold">Importe Mensual:</span> {{$cliente->importe_mensual}}
+                                        </div>
+                                        <div class="modal-footer">
+                                        <a href="/cliente/{{ $cliente->id }}"><button
+                                                class="btn btn-primary">Ver</button></a>
+                                        <form action=" {{ route('cliente.destroy', $cliente) }} " method="post">
+                                            @method('delete')
+                                            <input type="submit" value="Eliminar" class="btn btn-danger">
+                                        </form>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 @endsection

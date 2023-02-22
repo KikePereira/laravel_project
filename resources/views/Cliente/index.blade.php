@@ -21,19 +21,16 @@
 
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-11">
+            <div class="col-lg-11">
                 <table class="table table-hover border bg-white text-nowrap">
                     <thead class="table-dark">
                         <tr class="">
                             <th class="text-center fw-bold">ID</th>
                             <th class="text-center fw-bold">DNI</th>
                             <th class="text-center fw-bold">Nombre</th>
-                            <th class="text-center fw-bold">Apellidos</th>
                             <th class="text-center fw-bold">Telefono</th>
                             <th class="text-center fw-bold">Correo</th>
-                            <th class="text-center fw-bold">Direccion</th>
                             <th class="text-center fw-bold">Cuenta Corriente</th>
-                            <th class="text-center fw-bold">Pais</th>
                             <th class="text-center fw-bold">Moneda</th>
                             <th class="text-center fw-bold">Importe Mensual</th>
                             <th></th>
@@ -45,12 +42,9 @@
                             <td class="text-center fw-bold">{{ $cliente->id }}</td>
                             <td class="text-center">{{ $cliente->dni }}</td>
                             <td class="text-center">{{ $cliente->nombre }}</td>
-                            <td class="text-center">{{ $cliente->apellidos }}</td>
                             <td class="text-center">{{ $cliente->telefono }}</td>
                             <td class="text-center">{{ $cliente->correo }}</td>
-                            <td class="text-center">{{ $cliente->direccion }}</td>
                             <td class="text-center">{{ $cliente->cuenta_corriente }}</td>
-                            <td class="text-center">{{ $cliente->pais }}</td>
                             <td class="text-center">{{ $cliente->moneda }}</td>
                             <td class="text-center">{{ $cliente->importe_mensual }}</td>
                             <td>

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-        <div class="container-fluid">
-            <div class="container">
+    <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <form action="" method="post" class="">
                     <div class="row">
@@ -67,11 +67,19 @@
                     </div>
                     <br>
                 </form>
+                <div class="mt-3 text-end">
+                    <a href="/empleado/{{ $empleado->id }}/edit"><button class="btn btn-secondary">Modificar</button></a>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#modal{{ $empleado->id }}">
+                        Eliminar
+                    </button>
+                    <a href="javascript:history.back()" class="btn btn-primary">Volver</a>
+                </div>
             </div>
         </div>
-            <table class="table table-hover border bg-white caption-top"  cellspacing="0" >
-                <caption>Tareas del empleado</caption>
-                <thead class="table-dark">
+        <table class="table table-hover border bg-white caption-top" cellspacing="0">
+            <caption>Tareas del empleado</caption>
+            <thead class="table-dark">
                 <tr class="">
                     <th class="text-center fw-bold">ID</th>
                     <th class="text-center fw-bold">Estado</th>
@@ -83,40 +91,67 @@
                     <th class="text-center fw-bold"></th>
                 </tr>
             </thead>
-                <tbody class="">
-                    @foreach($tareas_empleado as $tarea)
+            <tbody class="">
+                @foreach ($tareas_empleado as $tarea)
                     <tr>
-                        <td class="text-center fw-bold">{{$tarea->id}}</td>
+                        <td class="text-center fw-bold">{{ $tarea->id }}</td>
                         <!-- VARIACIONES ESTADO -->
-                        @if($tarea->estado == 'Pendiente')
-                        <td class="bg-warning">{{$tarea->estado}}</td>
+                        @if ($tarea->estado == 'Pendiente')
+                            <td class="bg-warning">{{ $tarea->estado }}</td>
                         @elseif($tarea->estado == 'Cancelada')
-                        <td class="bg-danger">{{$tarea->estado}}</td>
+                            <td class="bg-danger">{{ $tarea->estado }}</td>
                         @else
-                        <td class="bg-success">{{$tarea->estado}}</td>
+                            <td class="bg-success">{{ $tarea->estado }}</td>
                         @endif
                         <!--  -->
-                        <td class="text-center text-nowrap">{{$tarea->fecha_realizacion}}</td>
-                        <td class="text-center text-nowrap">{{$tarea->empleado->nombre}}</td>
-                        <td class="text-center text-nowrap">{{$tarea->cliente->nombre}}</td>
-                        <td class="text-center text-nowrap">{{$tarea->poblacion}}</td>
-                        <td class="text-center">{{$tarea->anotacion_inicio}}</td>
+                        <td class="text-center text-nowrap">{{ $tarea->fecha_realizacion }}</td>
+                        <td class="text-center text-nowrap">{{ $tarea->empleado->nombre }}</td>
+                        <td class="text-center text-nowrap">{{ $tarea->cliente->nombre }}</td>
+                        <td class="text-center text-nowrap">{{ $tarea->poblacion }}</td>
+                        <td class="text-center">{{ $tarea->anotacion_inicio }}</td>
                         <td class="text-center text-nowrap">
-                            <a href="/tarea/{{$tarea->id}}"><button class="btn btn-primary">Ver</button></a>
-                            <a href="/tarea/{{$tarea->id}}"><button class="btn btn-secondary">Modificar</button></a>
-                            <a href="/tarea/{{$tarea->id}}"><button class="btn btn-danger">Eliminar</button></a>
+                            <a href="/tarea/{{ $tarea->id }}"><button class="btn btn-primary">Ver</button></a>
+                            <a href="/tarea/{{ $tarea->id }}"><button class="btn btn-secondary">Modificar</button></a>
+                            <a href="/tarea/{{ $tarea->id }}"><button class="btn btn-danger">Eliminar</button></a>
                         </td>
                     </tr>
-                    @endforeach
-                </tbody>
-                </table>
-                <div class="pagination">        
-                    {{$tareas_empleado->links()}}
-                </div>
+                @endforeach
+            </tbody>
+        </table>
+        <div class="pagination">
+            {{ $tareas_empleado->links() }}
         </div>
-        <br>
+    </div>
+    <br>
     <div class="container">
         <a href="javascript:history.back()" class="btn btn-primary form-control">Volver</a>
     </div>
     <br>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal{{$empleado->id}}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">¿Seguro que quiere eliminar esta tarea?</h1>
+                </div>
+                <div class="modal-body">
+                    <span class="fw-bold">ID:</span> {{$empleado->id}} <br>
+                    <span class="fw-bold">Empleado:</span> {{$empleado->nombre}} {{$empleado->apellidos}} <br>
+                    <span class="fw-bold">DNI:</span> {{$empleado->dni}} <br>
+                    <span class="fw-bold">Tipo:</span> {{$empleado->tipo}} <br>
+                    <span class="fw-bold">Fecha Alta:</span> {{$empleado->fecha_alta}}
+                </div>
+                <div class="modal-footer">
+                <a href="/empleado/{{ $empleado->id }}"><button
+                        class="btn btn-primary">Ver</button></a>
+                <form action=" {{ route('empleado.destroy', $empleado) }} " method="post">
+                    @method('delete')
+                    <input type="submit" value="Eliminar" class="btn btn-danger">
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

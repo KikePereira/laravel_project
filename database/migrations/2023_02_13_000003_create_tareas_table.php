@@ -29,8 +29,8 @@ return new class extends Migration
             $table->string('fecha_finalizacion');
             $table->longtext('anotacion_inicio');
             $table->longtext('anotacion_final');
-            $table->foreignId('empleado_id')->constrained();
-            $table->foreignId('cliente_id')->constrained(); 
+            $table->foreignId('empleado_id')->constrained()->nullable();
+            $table->foreignId('cliente_id')->constrained()->nullable(); 
             $table->timestamps();
             $table->softDeletes();
         });

@@ -62,6 +62,41 @@
                 </div>
             </div>
         </form>
+        
+        <div class="container mt-4 text-end">
+                <a href="/cuota/{{ $cuota->id }}/edit"><button class="btn btn-secondary">Modificar</button></a>
+                <a href="/cuota/{{$cuota->id}}/pdf" class="btn btn-success">PDF</a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$cuota->id}}">Eliminar</button>
+                <a href="javascript:history.back()" class="btn btn-primary">Volver</a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal{{$cuota->id}}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">¿Seguro que quiere eliminar esta tarea?</h1>
+            </div>
+            <div class="modal-body">
+                <span class="fw-bold">ID:</span> {{$cuota->id}}<br>
+                <span class="fw-bold">Conceptp:</span> {{$cuota->concepto}}<br>
+                <span class="fw-bold">Fecha Emision:</span> {{$cuota->fecha_emision}} <br>
+                <span class="fw-bold">Importe:</span> {{$cuota->importe}} <br>
+                <span class="fw-bold">Estado:</span> {{$cuota->estado}} <br>
+                <span class="fw-bold">Cliente:</span> {{$cuota->cliente->nombre}} {{$cuota->cliente->apellidos}}
+            </div>
+            <div class="modal-footer">
+            <a href="/cuota/{{ $cuota->id }}"><button
+                    class="btn btn-primary">Ver</button></a>
+            <form action=" {{ route('cuota.destroy', $cuota) }} " method="post">
+                @method('delete')
+                <input type="submit" value="Eliminar" class="btn btn-danger">
+            </form>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
     </div>
 </div>
 

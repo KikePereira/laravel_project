@@ -85,10 +85,15 @@
                             <br>
                             <h4 class="fw-bold">Empleado</h4>
                             <label for="" class="form-label">Empleado:</label>
+                            @if(isset($tarea->empleado) && !is_null($tarea->empleado) && !is_null($tarea->empleado->nombre))
                             <input type="text" class="form-control" name="Empleado" placeholder="Empleado asignado"
                                 value="{{ $tarea->empleado->nombre }}" disabled>
                                 <br>
                             <a href="{{ url('/empleado') }}/{{$tarea->empleado->id}}" class="btn btn-secondary">Ver empleado</a>
+                            @else
+                            <input type="text" class="form-control text-danger" name="Empleado" placeholder="Empleado asignado"
+                                value="Empleado Eliminado" disabled>
+                            @endif
                         </div>
 
 

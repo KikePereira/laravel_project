@@ -29,7 +29,7 @@ class TareaController extends Controller
      */
     public function index()
     {
-        $tareas = tarea::paginate(10);
+        $tareas = Tarea::paginate(10);
         return view('Tarea/index',['tareas'=>$tareas]);
 
     }

@@ -2,7 +2,7 @@
 
 @section('content')
     @foreach ($tareas as $tarea)
-        @if (Auth::user()->tipo == 'Administadro')
+        @if (Auth::user()->tipo == 'Administrador')
             <div class="container">
                 <form action="{{ route('tarea.update', $tarea) }}" method="post" class="">
                     @method('put')
@@ -105,8 +105,12 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                             <select class="form-select" name="empleado_id">
-                                <option value="{{ $tarea->empleado->id }}" selected>{{ $tarea->empleado->nombre }}
-                                </option>
+                                @if(isset($tarea->empleado) && !is_null($tarea->empleado) && !is_null($tarea->empleado->nombre))
+                                <option value="{{ $tarea->empleado->id }}" selected>{{ $tarea->empleado->nombre }}</option>
+                                @else
+                                <option value="" selected class="text-danger">Empleado Eliminado</option>
+                                @endif
+
                                 @foreach ($empleados as $empleado)
                                     <option value="{{ $empleado->id }}">{{ $empleado->nombre }}</option>
                                 @endforeach

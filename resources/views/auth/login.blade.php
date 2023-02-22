@@ -1,14 +1,22 @@
+<title>{{ config('app.name', 'Laravel') }}</title>
+
+<!-- Fonts -->
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
 
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+<!-- Scripts -->
+@vite(['resources/sass/app.scss', 'resources/js/app.js'])
+<style>
+    body {
+        background: linear-gradient(175deg, rgba(56, 56, 56, 1) 25%, rgba(0, 0, 0, 1) 80%);
+    }
+</style>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+<div class="container text-center mt-5">
+    <img src="{{ asset('img/logo_p.png') }}" width="400px">
+</div>
 
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -21,10 +29,13 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="email"
+                                class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email"
+                                    class="form-control @error('email') is-invalid @enderror" name="email"
+                                    value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -35,10 +46,13 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label for="password"
+                                class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" type="password"
+                                    class="form-control @error('password') is-invalid @enderror" name="password"
+                                    required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -51,7 +65,8 @@
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                                        {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
@@ -66,11 +81,11 @@
                                     {{ __('Login') }}
                                 </button>
 
-                                <a href="/auth/github/redirect"  class="btn btn-dark">
+                                <a href="/auth/github/redirect" class="btn btn-dark">
                                     GITHUB
                                 </a>
 
-                                <a href="/auth/google/redirect"  class="btn btn-danger">
+                                <a href="/auth/google/redirect" class="btn btn-danger">
                                     GOOGLE
                                 </a>
 
@@ -80,10 +95,16 @@
                                     </a>
                                 @endif
                             </div>
+                            <div class="row text-center mt-3">
+                                <a href="/registrarTarea/create" class="btn btn-secondary">REGISTRAR UNA TAREA - CLIENTE</a>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<div class="container mt-5">
 </div>

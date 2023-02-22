@@ -58,7 +58,13 @@
                                     @endif
                                     <!--  -->
                                     <td class="text-center text-nowrap">{{ $tarea->fecha_realizacion }}</td>
-                                    <td class="text-center text-nowrap">{{ $tarea->empleado->nombre }}</td>
+                                    <td class="text-center text-nowrap">
+                                        @if (isset($tarea->empleado) && !is_null($tarea->empleado) && !is_null($tarea->empleado->nombre))
+                                            {{ $tarea->empleado->nombre }}
+                                        @else
+                                        <span class="text-danger">Empleado Eliminado</span>
+                                        @endif
+                                    </td>
                                     <td class="text-center text-nowrap">{{ $tarea->cliente->nombre }}</td>
                                     <td class="text-center text-nowrap">{{ $tarea->poblacion }}</td>
                                     <td class="text-center">{{ $tarea->anotacion_inicio }}</td>
@@ -66,7 +72,8 @@
                                     @if (Auth::user()->tipo == 'Operario')
                                         <td class="text-center text-nowrap">
                                             <a href="/operario/{{ $tarea->id }}"class="btn btn-primary">Ver</a>
-                                            <a href="/operario/{{ $tarea->id}}/edit" class="btn btn-success">Completar</a>
+                                            <a href="/operario/{{ $tarea->id }}/edit"
+                                                class="btn btn-success">Completar</a>
                                         </td>
                                     @else
                                         <td class="text-center text-nowrap">
@@ -95,7 +102,12 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <span class="fw-bold">ID:</span>{{ $tarea->id }} <br>
-                                                    <span class="fw-bold">Empleado:</span>{{ $tarea->empleado->nombre }}
+                                                    <span class="fw-bold">Empleado:</span>
+                                                    @if (isset($tarea->empleado) && !is_null($tarea->empleado) && !is_null($tarea->empleado->nombre))
+                                                        {{ $tarea->empleado->nombre }}
+                                                    @else
+                                                        <span class="text-danger">Empleado Eliminado</span> 
+                                                    @endif
                                                     <br>
                                                     <span class="fw-bold">Cliente:</span>{{ $tarea->cliente->nombre }} <br>
                                                     <span class="fw-bold">Estado:</span>{{ $tarea->estado }} <br>

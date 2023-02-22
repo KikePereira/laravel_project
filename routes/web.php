@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\OperarioController;
+use App\Http\Controllers\RegistrarTareaController;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\Empleado;
@@ -39,6 +40,7 @@ Route::resources([
     'cliente' => ClienteController::class,
     'cuota' => CuotaController::class,
     'operario' => OperarioController::class,
+    'registrarTarea' => RegistrarTareaController::class,
 ]);
 
 Route::get('/eliminada', [TareaController::class, 'eliminadas'])->name('tarea.eliminada');
@@ -105,6 +107,7 @@ Route::get('/auth/google/callback', function () {
 //PDF
 
 Route::get('cuota/{id}/pdf', [CuotaController::class, 'pdf'])->name('cuota.pdf');
+
 
 
 
