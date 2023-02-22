@@ -3,26 +3,98 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style>
+        .bg-dark{
+            background-color: rgb(49, 49, 49);
+        }
+        .bg-red{
+            background-color: rgb(209, 24, 24);
+        }
+        .text-white{
+            color:white;
+        }
+        .text-red{
+            color:rgb(209, 24, 24);;
+        }
+        .table, th, td{
+            border: 1px solid black;
+        }
+        td{
+            padding-left: 400px;
+            text-align: right;
+        }
+        .fw-bold{
+            font-weight: bold;
+        }
+
+        .datos-cliente{
+            color: rgb(80, 80, 80);
+            position:static;
+            margin-left: 60%
+        }
+
+        .text-primary{
+            color: rgb(80, 80, 80);
+        }
+        .logo{
+            position: absolute;
+        }
         /* Estilos para la factura */
     </style>
+
 </head>
 <body>
-    <h1>Cuota #{{ $cuota->id }}</h1>
+    <div class="logo">
+        <img src="{{ public_path('assets/img/logo.png') }}" alt="">
+    </div>
 
-    <h2>DATOS DE La CUOTA</h2>
-    <p>Concepto: {{ $cuota->concepto }}</p>
-    <p>Fecha emision: {{ $cuota->fecha_emision }}</p>
-    <p>Importe: {{ $cuota->importe }}</p>
-    <p>Estado: {{ $cuota->estado }}</p>
-    <p>Fecha pago: {{ $cuota->fecha_pago }}</p>
-    <p>Direccion: {{ $cuota->direccion }}</p>
+    <div class="datos-cliente">
+        <span class="fw-bold">Cliente:</span> <span>{{ $cuota->cliente->nombre }} {{ $cuota->cliente->apellidos }}</span> <br>
+        <span class="fw-bold">DNI:</span> <span>{{ $cuota->cliente->dni }}</span> <br>
+        <span class="fw-bold">Telefono:</span> <span>{{$cuota->cliente->telefono}}</span> <br>
+        <span class="fw-bold">Correo:</span> <span> {{$cuota->cliente->correo}}</span> <br>
+        <span class="fw-bold">Cuenta Corriente:</span> <span> {{$cuota->cliente->cuenta_corriente}}</span> <br>
+    </div>
 
-    <h2>DATOS DEL CLIENTE</h2>
-    <p>Nombre: {{ $cuota->cliente->nombre }} </p>
-    <p>Apellido: {{$cuota->cliente->apellido}}</p>
-    <p>DNI: {{$cuota->cliente->dni}}</p>
-    <p>Telefono: {{$cuota->cliente->telefono}}</p>
-    <p>Correo: {{$cuota->cliente->correo}}</p>
-    <p>Cuenta Corriente: {{$cuota->cliente->cuenta_corriente}}</p>
+    <h1> Cuota Nº: <span class="text-primary"> {{ $cuota->id }} </span> </h1>
+
+    <div>
+
+    <table class="">
+        <tr>
+            <th class="bg-dark text-white">Concepto:</th>
+            <td>{{ $cuota->concepto }}</td>
+        </tr>
+
+        <tr>
+            <th class="bg-dark text-white">Fecha emision:</th>
+            <td>{{ $cuota->fecha_emision }}</td>
+        </tr>
+
+        <tr>
+            <th class="bg-dark text-white">Importe:</th>
+            <td>{{ $cuota->importe }}</td>
+        </tr>
+
+        <tr>
+            <th class="bg-dark text-white">Estado:</th>
+            <td>{{ $cuota->estado }}</td>
+        </tr>
+
+        <tr>
+            <th class="bg-dark text-white">Fecha pago:</th>
+            <td>{{ $cuota->fecha_pago }}</td>
+        </tr>
+
+        <tr>
+            <th class="bg-dark text-white">Direccion:</th>
+            <td>{{ $cuota->direccion }}</td>
+        </tr>
+
+        <tr>
+            <th class="bg-red text-white">Importe:</th>
+            <td class="text-red">{{ $cuota->importe }}</td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

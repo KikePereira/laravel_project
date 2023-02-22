@@ -67,9 +67,10 @@ class CuotaController extends Controller
         $pdfContent = $this->generatePDF($cuota);
         // $correo = new Correo(Cliente::find($cuota['cliente_id'])->nombre);
         // Mail::to($destinatario)->send($correo);
-        Mail::send([], [], function ($message) use ($pdfContent, $destinatario) {
+        Mail::send([], [], function ($message) use ($pdfContent, $destinatario, $cuota) {
             $message->to($destinatario)
-                    ->subject('Cuota')
+                    ->subject('Cuota ' . $cuota->id . ' - ' . $cuota->concepto )
+                    ->text('Hola ' . $cuota->cliente->nombre . ' te enviamos la factura de tu ultima cuota con todos sus datos.')
                     ->attachData($pdfContent, 'cuota.pdf');
         });
     
@@ -180,9 +181,11 @@ class CuotaController extends Controller
             $destinatario = Cliente::find($datos['cliente_id'])->correo;
             $cuota=Cuota::orderBy('id', 'desc')->first();
             $pdfContent = $this->generatePDF($cuota);
-            Mail::send([], [], function ($message) use ($pdfContent, $destinatario) {
+
+            Mail::send([], [], function ($message) use ($pdfContent, $destinatario, $cuota) {
                 $message->to($destinatario)
-                        ->subject('Cuota')
+                        ->subject('Cuota ' . $cuota->id . ' - ' . $cuota->concepto )
+                        ->text('Hola ' . $cuota->cliente->nombre . ' te enviamos la factura de tu ultima cuota con todos sus datos.')
                         ->attachData($pdfContent, 'cuota.pdf');
             });
 
