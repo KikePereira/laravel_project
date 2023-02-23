@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\CuotaController;
 use App\Http\Controllers\OperarioController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RegistrarTareaController;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -107,8 +108,13 @@ Route::get('/auth/google/callback', function () {
 //PDF
 
 Route::get('cuota/{id}/pdf', [CuotaController::class, 'pdf'])->name('cuota.pdf');
+Route::get('pagar/{id}',[CuotaController::class, 'pagar'])->name('cuota.pagar');
+Route::get('pagofinalizado/{id}',[CuotaController::class, 'pagar'])->name('cuota.pagar');
 
-
-
-
+// Paypal
+Route::controller(PaymentController::class)->group(function(){
+    Route::get('/paypal/pay/{id}', 'payWithPaypal')->name('paypal.pay');
+    Route::get('/paypal/status/{id}','payPalStatus')->name('paypal.status');
+    Route::get('/paypal/final', 'pagoFinalizado')->name('pagofinalizado');
+});
 

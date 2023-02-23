@@ -33,6 +33,7 @@
                         <th class="text-center fw-bold">Estado</th>
                         <th class="text-center fw-bold">Cliente</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -50,11 +51,18 @@
                          @endif
                         <td class="text-center">{{ $cuota->cliente->nombre }}</td>
                         <td class="text-center">
+                            @if($cuota->estado != 'Pagada')
+                            <a class="btn btn-primary" href="{{route('paypal.pay', ['id' => $cuota->id])}}">Pagar</a>
+                            @endif
+                        </td>
+                        <td class="text-center">
                             <a href="/cuota/{{ $cuota->id }}"><button class="btn btn-primary">Ver</button></a>
                             <a href="/cuota/{{ $cuota->id }}/edit"><button class="btn btn-secondary">Modificar</button></a>
                             <a href="/cuota/{{$cuota->id}}/pdf" class="btn btn-success">PDF</a>
+
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$cuota->id}}">Eliminar</button>
                         </td>
+
                     </tr>
                     <!-- Modal -->
                     <div class="modal fade" id="modal{{$cuota->id}}" tabindex="-1" aria-hidden="true">

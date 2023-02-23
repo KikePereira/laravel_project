@@ -213,4 +213,15 @@ class CuotaController extends Controller
     return $pdfContent;
 }
 
+public function pagar($id)
+{
+    $cuota = Cuota::find($id);
+    return view('Cuota/pagar',compact('cuota'));
+}
+
+public function pagofinalizado($id)
+{
+    $cuota = Cuota::find($id);
+    return view('Cuota/pagofinalizado', compact('cuota'));
+}
 }
