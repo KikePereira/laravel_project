@@ -41,7 +41,7 @@ class PaymentController extends Controller
         $payer->setPaymentMethod('paypal');
 
         $amount = new Amount();
-        $amount->setTotal('10');
+        $amount->setTotal(Cuota::find($id)->importe);
         $amount->setCurrency('EUR');
 
         $transaction = new Transaction();
