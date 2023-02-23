@@ -9,6 +9,8 @@ use Tests\TestCase;
 
 class FormTest extends TestCase
 {
+
+    //CLIENTE STORE -> INSERTAMOS DATOS CORRECTOS EN LA VISTA DEL FORMULARIO Y COMPROBAMOS QUE NOS DEVUELVE LA VISTA INDEX TRAS LA INSERCION EXISTOSA
     public function test_cliente_store()
     {
         $empleado = Empleado::factory()->state([
